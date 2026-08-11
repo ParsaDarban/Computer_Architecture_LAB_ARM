@@ -237,17 +237,6 @@ The verification checks include:
 * Hazard detection
 * Forwarding behavior
 
-The condition flags were verified at two important points:
-
-```text
-Z C N V
-
-0101
-0010
-```
-
-corresponding to the expected flag states described in the testbench.
-
 # Performance Comparison
 
 The processor was simulated with forwarding both **disabled** and **enabled**.
