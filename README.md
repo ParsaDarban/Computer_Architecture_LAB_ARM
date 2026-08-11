@@ -16,6 +16,8 @@ The project also includes **Hazard Detection** and **Data Forwarding** mechanism
 
 The processor follows a 5-stage pipelined architecture:
 
+![ARM Processor Pipeline](image.png)
+
 Each stage communicates with the next stage through pipeline registers.
 
 ## 1. Instruction Fetch — IF
