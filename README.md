@@ -12,24 +12,11 @@ The processor implements the main stages of a classic pipeline:
 
 The project also includes **Hazard Detection** and **Data Forwarding** mechanisms to maintain correct execution and improve pipeline performance.
 
----
-
-## Authors
-
-* **Parsa Darban**
-* **Rouja Aghajani** 
-
----
-
 ## Processor Architecture
 
 The processor follows a 5-stage pipelined architecture:
 
-
-
 Each stage communicates with the next stage through pipeline registers.
-
----
 
 ## 1. Instruction Fetch — IF
 
@@ -49,7 +36,8 @@ The instruction memory contains **2048 locations**, with each location storing a
 PC_next = PC + 1
 ```
 
-## Branch instructions can redirect the PC to a target address, while the IF/ID register can be flushed to remove incorrectly fetched instructions.
+#### Branch instructions can redirect the PC to a target address, while the IF/ID register can be flushed to remove incorrectly fetched instructions.
+
 
 ## 2. Instruction Decode — ID
 
@@ -74,7 +62,7 @@ Rd        = instruction[15:12]
 Rm        = instruction[3:0]
 ```
 
-## The stage also extracts source registers and provides the required information to the Hazard Detection Unit.
+#### The stage also extracts source registers and provides the required information to the Hazard Detection Unit.
 
 ## 3. Execute — EXE
 
@@ -119,8 +107,6 @@ The Execute stage also supports ARM immediate rotation and register-based shift 
 * ASR
 * ROR
 
----
-
 ## 4. Memory — MEM
 
 The MEM stage handles data-memory operations.
@@ -161,8 +147,6 @@ Therefore, it contains **2048 × 32-bit words**.
 
 The MEM/WB pipeline register transfers memory data, ALU results, destination registers, and write-back control signals to the WB stage.
 
----
-
 ## 5. Write-Back — WB
 
 The WB stage is the final stage of the pipeline.
@@ -180,7 +164,6 @@ The WB stage also propagates:
 * Register write-enable
 * Selected result value
 
----
 
 # Hazard Detection Unit
 
@@ -217,8 +200,6 @@ Hazard     = 1
 
 A bubble can also be inserted into the pipeline to prevent incorrect execution.
 
----
-
 # Forwarding Unit
 
 To reduce unnecessary stalls, the processor implements a **Forwarding Unit**.
@@ -242,8 +223,6 @@ forward_en
 ```
 
 When forwarding is enabled, arithmetic and logical RAW hazards can be resolved without unnecessary stalls. However, **Load-Use hazards still require stalling** because the loaded data is not immediately available.
-
----
 
 # Simulation & Verification
 
@@ -269,8 +248,6 @@ Z C N V
 
 corresponding to the expected flag states described in the testbench.
 
----
-
 # Performance Comparison
 
 The processor was simulated with forwarding both **disabled** and **enabled**.
@@ -292,40 +269,7 @@ Speedup = 5640 / 3900 ≈ 1.45×
 
 Thus, enabling forwarding resulted in approximately a **45% higher simulation throughput relative to the measured runtime**.
 
----
-
-# 📁 Project Structure
-
-A typical organization for the project is:
-
-```text
-.
-├── src/
-│   ├── IF/
-│   ├── ID/
-│   ├── EXE/
-│   ├── MEM/
-│   ├── WB/
-│   ├── Hazard/
-│   ├── Forwarding/
-│   └── ARM/
-│
-├── testbench/
-│   └── ...
-│
-├── memory/
-│   └── ...
-│
-├── README.md
-└── report/
-    └── Computer_Architecture_LAB_ARM.pdf
-```
-
-> Adjust the directory names above to match the actual files in the repository.
-
----
-
-# 🛠️ Technologies
+# Technologies
 
 * **Verilog HDL**
 * ARM instruction-set concepts
@@ -335,33 +279,27 @@ A typical organization for the project is:
 * Digital Logic Design
 * Simulation & Waveform Analysis
 
----
+# Main Features
 
-# 📌 Main Features
+* 5-stage ARM pipeline
+* Instruction Fetch
+* Instruction Decode
+* Execute / ALU
+* Memory Access
+* Write-Back
+* ARM condition flags (`N`, `Z`, `C`, `V`)
+* Branch handling
+* Data Hazard Detection
+* Pipeline Stall / Bubble insertion
+* MEM → EXE forwarding
+* WB → EXE forwarding
+* Configurable forwarding enable
+* Instruction and data memory
+* Complete processor simulation
+* Performance comparison with and without forwarding
 
-* ✅ 5-stage ARM pipeline
-* ✅ Instruction Fetch
-* ✅ Instruction Decode
-* ✅ Execute / ALU
-* ✅ Memory Access
-* ✅ Write-Back
-* ✅ ARM condition flags (`N`, `Z`, `C`, `V`)
-* ✅ Branch handling
-* ✅ Data Hazard Detection
-* ✅ Pipeline Stall / Bubble insertion
-* ✅ MEM → EXE forwarding
-* ✅ WB → EXE forwarding
-* ✅ Configurable forwarding enable
-* ✅ Instruction and data memory
-* ✅ Complete processor simulation
-* ✅ Performance comparison with and without forwarding
-
----
-
-# 📚 Project Report
+# Project Report
 
 The complete technical report contains detailed descriptions of each pipeline stage, hazard detection, forwarding implementation, and simulation results.
 
-**Authors:** Rouja Aghajani & Parsa Darban
-**Course:** Computer Architecture Lab
-**Semester:** Spring 2026
+**Authors:**  Parsa Darban & Rouja Aghajani
