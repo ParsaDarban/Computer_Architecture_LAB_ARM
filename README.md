@@ -14,14 +14,14 @@ The project also includes **Hazard Detection** and **Data Forwarding** mechanism
 
 ---
 
-## 👥 Authors
+## Authors
 
 * **Parsa Darban**
 * **Rouja Aghajani** 
 
 ---
 
-## 🏗️ Processor Architecture
+## Processor Architecture
 
 The processor follows a 5-stage pipelined architecture:
 
